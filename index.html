@@ -3,18 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dark Content Box</title>
+<title>Staticrypt Dark Embed</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
-    <div class="content-box" id="contentBox">
-        <p>
-        This is your interactive dark content box. You can put any text, code snippets, or notes here. Users can copy it easily.
-        </p>
+    <h2>Staticrypt Dark</h2>
+    <div class="flex-box">
+        <div class="box">
+            <h3>Input Code / Text</h3>
+            <textarea id="inputArea" placeholder="Type or paste your text here..."></textarea>
+        </div>
+        <div class="box">
+            <h3>Output / Preview</h3>
+            <div id="outputArea" class="output-box"></div>
+            <button id="copyBtn">Copy</button>
+            <p id="status" class="hidden">Copied!</p>
+        </div>
     </div>
-    <button id="copyBtn">Copy</button>
-    <p id="status" class="hidden">Copied!</p>
 </div>
 <script src="script.js"></script>
 </body>
