@@ -17,9 +17,9 @@ body {
 
 textarea {
     width:100%;
-    padding:10px;
+    padding:12px;
     margin-bottom:10px;
-    border-radius:6px;
+    border-radius:8px;
     border:none;
     background:#2b2b2b;
     color:#fff;
@@ -29,7 +29,7 @@ textarea {
 }
 
 button {
-    padding:10px 20px;
+    padding:10px 22px;
     border:none;
     border-radius:6px;
     background:#39e09b;
@@ -37,6 +37,7 @@ button {
     font-weight:bold;
     cursor:pointer;
     margin-bottom:10px;
+    font-size:14px;
 }
 
 button:hover {
