@@ -1,4 +1,3 @@
-```javascript
 // packer.js
 // Usage: node packer.js input.html dist/index.html [--obf]
 // Inlines relative CSS/JS, optional JS obfuscation (--obf), base64-encodes HTML,
@@ -150,4 +149,3 @@ const outDir = path.dirname(path.resolve(outputFile));
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(outputFile, loader, 'utf8');
 console.log('Packed', inputFile, '→', outputFile, doObf ? '(with JS obfuscation)' : '');
-```
