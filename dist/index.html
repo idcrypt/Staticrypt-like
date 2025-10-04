@@ -1,0 +1,40 @@
+```html
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Loading...</title>
+<style>
+  body{background:#0b0b0d;color:#eee;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}
+  .box{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;text-align:center;}
+  .spinner{width:48px;height:48px;border-radius:50%;border:5px solid rgba(255,255,255,0.06);border-top-color:#7c4dff;animation:spin 1s linear infinite;margin:0 auto 12px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  a.info{color:#9b9bff;text-decoration:none}
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="spinner"></div>
+    <div>Preparing content…</div>
+    <div style="margin-top:8px"><a class="info" href="#" onclick="location.reload();return false;">Reload</a></div>
+  </div>
+
+<script>
+(function(){
+  try {
+    // loader will replace the placeholder with JSON array of base64 chunks
+    var chunks = /*{{CHUNKS}}*/ [];
+    var b64 = chunks.join('');
+    var html = atob(b64);
+    document.open();
+    document.write(html);
+    document.close();
+  } catch (e) {
+    document.body.innerHTML = '<div style="padding:20px;color:#fff;background:#900">Failed to load content. Check console.</div>';
+    console.error('Unpack error', e);
+  }
+})();
+</script>
+</body>
+</html>
