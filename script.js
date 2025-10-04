@@ -3,18 +3,14 @@ const outputArea = document.getElementById('outputArea');
 const copyBtn = document.getElementById('copyBtn');
 const status = document.getElementById('status');
 
-// Simple "staticrypt-like" formatting: base64 encode
-function encryptText(text) {
+function encryptText(text){
     return btoa(unescape(encodeURIComponent(text)));
 }
 
-// Update output as user types
 inputArea.addEventListener('input', () => {
-    const text = inputArea.value;
-    outputArea.textContent = encryptText(text);
+    outputArea.textContent = encryptText(inputArea.value);
 });
 
-// Copy button
 copyBtn.addEventListener('click', () => {
     const text = outputArea.textContent;
     navigator.clipboard.writeText(text).then(() => {
