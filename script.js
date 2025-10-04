@@ -3,14 +3,25 @@ const outputHTML = document.getElementById('outputHTML');
 const generateBtn = document.getElementById('generateBtn');
 const copyBtn = document.getElementById('copyBtn');
 
-// Fungsi generate HTML Staticrypt-like (no password)
 function generateStaticHTML(text){
-    const encoded = btoa(unescape(encodeURIComponent(text)));
-    return `
-<div style="background:#1e1e1e; padding:20px; border-radius:12px; color:#eee; font-family:Arial,sans-serif;">
-  <h3>Staticrypt Content</h3>
-  <pre style="background:#2b2b2b; padding:10px; border-radius:8px; overflow-x:auto;">${encoded}</pre>
-</div>`;
+    const encoded = btoa(unescape(encodeURIComponent(text))); // encode ke Base64
+    // HTML yang men-decode di browser
+    return `<div class="staticrypt-container" data-content="${encoded}" 
+style="background:#1e1e1e; padding:15px; border-radius:12px; color:#eee; font-family:Arial,sans-serif;">
+Loading content...
+</div>
+<script>
+(function(){
+    const container = document.currentScript.previousElementSibling;
+    const encrypted = container.getAttribute("data-content");
+    try {
+        const decoded = decodeURIComponent(escape(atob(encrypted)));
+        container.textContent = decoded;
+    } catch(e){
+        container.textContent = "Failed to decode content.";
+    }
+})();
+</script>`;
 }
 
 generateBtn.addEventListener('click', () => {
@@ -24,6 +35,6 @@ generateBtn.addEventListener('click', () => {
 
 copyBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(outputHTML.value).then(() => {
-        alert("HTML copied!");
+        alert("HTML copied! Paste it in Blogger or your site.");
     });
 });
