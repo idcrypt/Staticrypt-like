@@ -3,11 +3,11 @@ const outputHTML = document.getElementById('outputHTML');
 const generateBtn = document.getElementById('generateBtn');
 const copyBtn = document.getElementById('copyBtn');
 
+// Generate HTML
 function generateStaticHTML(text){
-    const encoded = btoa(unescape(encodeURIComponent(text))); // encode ke Base64
-    // HTML yang men-decode di browser
-    return `<div class="staticrypt-container" data-content="${encoded}" 
-style="background:#1e1e1e; padding:15px; border-radius:12px; color:#eee; font-family:Arial,sans-serif;">
+    const encoded = btoa(unescape(encodeURIComponent(text))); // Base64
+    // HTML yang bisa langsung tampil rapi di Blogger
+    return `<div class="staticrypt-box" data-content="${encoded}" style="background:#1e1e1e; padding:15px; border-radius:12px; color:#eee; font-family:Arial,sans-serif;">
 Loading content...
 </div>
 <script>
@@ -16,14 +16,15 @@ Loading content...
     const encrypted = container.getAttribute("data-content");
     try {
         const decoded = decodeURIComponent(escape(atob(encrypted)));
-        container.textContent = decoded;
+        container.innerHTML = decoded; // tampil rapi langsung
     } catch(e){
-        container.textContent = "Failed to decode content.";
+        container.innerHTML = "Failed to decode content.";
     }
 })();
 </script>`;
 }
 
+// Tombol generate
 generateBtn.addEventListener('click', () => {
     const text = inputText.value.trim();
     if(text){
@@ -33,6 +34,7 @@ generateBtn.addEventListener('click', () => {
     }
 });
 
+// Tombol copy
 copyBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(outputHTML.value).then(() => {
         alert("HTML copied! Paste it in Blogger or your site.");
